@@ -69,7 +69,9 @@ function load_js()
 	wp_enqueue_script('lightbox.min.js');
 
 	wp_register_script('main.js',get_template_directory_uri().'/js/main.js','all');
-	wp_enqueue_script('main.js')
+	wp_enqueue_script('main.js');
+
+
 
 	
 
@@ -86,3 +88,87 @@ add_action('wp_footer','load_js');
 
 
 /*Load js ends*/
+
+
+/*Widget Area Starts*/
+
+function widget_area()
+{
+	  register_sidebar( array(
+        'name'          => 'Address',
+        'id'            => 'address',
+        'before_widget' => '<div class="chw-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="chw-title">',
+        'after_title'   => '</h2>',
+    ) );
+
+	  register_sidebar(array(
+		'name'          => 'Services',
+		'id'            => 'services',
+		'before_widget' => '<div class="chw-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="chw-title">',
+		'after_title'   => '</h2>',
+
+	  ));
+
+	  register_sidebar(array(
+		'name'          => 'Newsletter',
+		'id'            => 'newsletter',
+		'before_widget' => '<div class="chw-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="chw-title">',
+		'after_title'   => '</h2>',
+
+	  ));
+
+
+	   register_sidebar(array(
+		'name'          => 'Copyright',
+		'id'            => 'copyright',
+		'before_widget' => '<div class="chw-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="chw-title">',
+		'after_title'   => '</h2>',
+
+	  ));
+
+	   register_sidebar(array(
+
+	   	'name'          => 'Topbar',
+		'id'            => 'topbar',
+		'before_widget' => '<div class="chw-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="chw-title">',
+		'after_title'   => '</h2>',
+
+
+
+	   ));
+
+
+}
+
+
+add_action( 'widgets_init', 'widget_area');
+
+/*Widget Area Ends*/
+
+
+/*add theme support starts*/
+
+add_theme_support('menus');
+add_theme_support('post-thumbnails');
+
+/*add theme support ends*/
+
+
+/*register menu starts*/
+
+function wpb_custom_new_menu() {
+  register_nav_menu('my-custom-menu',__( 'My Custom Menu' ));
+}
+add_action( 'init', 'wpb_custom_new_menu' );
+
+/*register menu ends*/
