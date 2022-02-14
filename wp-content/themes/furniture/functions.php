@@ -174,9 +174,43 @@ add_action( 'init', 'wpb_custom_new_menu' );
 /*register menu ends*/
 
 
-// add shortcode in yout requirement with parameter
+//shortcode without parameter
 
-function add_shortcode()
+function show_img()
 {
-	
+	$img="<img src='http://localhost/furniturewp/wp-content/uploads/2022/02/carousel-2.jpg' width='200' height='200'>";
+	return $img;
+
 }
+
+
+add_shortcode('view-image','show_img');
+
+//shortcode with parameter
+
+function image_new($img)
+{
+	$array=shortcode_atts(array('width'=>'200','height'=>'200'),$img);
+
+	$output="<img src='http://localhost/furniturewp/wp-content/uploads/2022/02/carousel-2.jpg' width='".$array['width']."' height='".$array['height']."'>";
+	return $output;
+
+
+}
+
+add_shortcode('image-new','image_new');
+
+
+//printing full username using shortcode
+
+
+function username($name)
+{
+    $array=shortcode_atts(array('firstname'=>'Nishant','lastname'=>'Dua'),$name);
+
+    $output="<h1>My name is ".$array['firstname']." ".$array['lastname']."</h1>";
+    return $output;
+}
+
+
+add_shortcode('full-name','username');
